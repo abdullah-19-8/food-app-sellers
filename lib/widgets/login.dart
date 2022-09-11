@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
               loginNow();
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.cyan,
+              backgroundColor: Colors.cyan,
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
             ),
             child: const Text(

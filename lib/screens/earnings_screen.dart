@@ -26,7 +26,6 @@ class _EarningsScreenState extends State<EarningsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     sellerTotalEarnings = retrieveSellerEarnings();

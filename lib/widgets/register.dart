@@ -134,7 +134,6 @@ class _RegisterState extends State<Register> {
   void authenticateSellerAndSignUp() async {
     User? currentUser;
 
-
     await firebaseAuth
         .createUserWithEmailAndPassword(
             email: emailController.text.trim(),
@@ -277,7 +276,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.amber,
+                      backgroundColor: Colors.amber,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -293,7 +292,7 @@ class _RegisterState extends State<Register> {
               formValidation();
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.cyan,
+              backgroundColor: Colors.cyan,
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
             ),
             child: const Text(
