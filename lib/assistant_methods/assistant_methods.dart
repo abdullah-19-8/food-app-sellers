@@ -3,23 +3,18 @@ import 'package:flutter/material.dart';
 
 import '../../models/global.dart';
 
-
 separateOrderItemIDs(orderIDs) {
   List<String> separateItemIDsList = [], defaultItemList = [];
 
-  defaultItemList =  List<String >.from(orderIDs);
+  defaultItemList = List<String>.from(orderIDs);
 
   for (int i = 0; i < defaultItemList.length; i++) {
     String item = defaultItemList[i].toString();
     var pos = item.lastIndexOf(":");
     String getItemId = (pos != -1) ? item.substring(0, pos) : item;
 
-    print("\n this is itemID now = $getItemId");
-
     separateItemIDsList.add(getItemId);
   }
-  print("\n this is item List now = ");
-  print(separateItemIDsList);
 
   return separateItemIDsList;
 }
@@ -34,25 +29,19 @@ separateItemIDs() {
     var pos = item.lastIndexOf(":");
     String getItemId = (pos != -1) ? item.substring(0, pos) : item;
 
-    print("\n this is itemID now = $getItemId");
-
     separateItemIDsList.add(getItemId);
   }
-  print("\n this is item List now = ");
-  print(separateItemIDsList);
 
   return separateItemIDsList;
 }
-
 
 separateOrderItemQuantities(orderIDs) {
   List<String> separateItemQuantitiesList = [];
   List<String> defaultItemList = [];
 
-  defaultItemList = List<String >.from(orderIDs);
+  defaultItemList = List<String>.from(orderIDs);
 
   for (int i = 1; i < defaultItemList.length; i++) {
-
     //55565767:7
     String item = defaultItemList[i].toString();
 
@@ -61,12 +50,8 @@ separateOrderItemQuantities(orderIDs) {
 
     var quantityNumber = int.parse(listItemCharacters[1].toString());
 
-    print("\n this is Quantity Number = $quantityNumber");
-
     separateItemQuantitiesList.add(quantityNumber.toString());
   }
-  print("\n this is Quantity List now = ");
-  print(separateItemQuantitiesList);
 
   return separateItemQuantitiesList;
 }
@@ -78,7 +63,6 @@ separateItemQuantities() {
   defaultItemList = sharedPreferences!.getStringList("userCart")!;
 
   for (int i = 1; i < defaultItemList.length; i++) {
-
     //55565767:7
     String item = defaultItemList[i].toString();
 
@@ -87,29 +71,26 @@ separateItemQuantities() {
 
     var quantityNumber = int.parse(listItemCharacters[1].toString());
 
-    print("\n this is Quantity Number = $quantityNumber");
-
     separateItemQuantitiesList.add(quantityNumber);
   }
-  print("\n this is Quantity List now = ");
-  print(separateItemQuantitiesList);
 
   return separateItemQuantitiesList;
 }
 
-clearCartNow(context){
+clearCartNow(context) {
   sharedPreferences!.setStringList("userCart", ['garbageValue']);
   List<String>? emptyList = sharedPreferences!.getStringList("userCart");
 
-  FirebaseFirestore.instance.collection("users").doc(firebaseAuth.currentUser!.uid).update(
-      {"userCart": emptyList}).then((value) {
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(firebaseAuth.currentUser!.uid)
+      .update({"userCart": emptyList}).then((value) {
     sharedPreferences!.setStringList("userCart", emptyList!);
-
   });
 }
 
-myBoxDecoration(Color color1 ,Color color2){
-  return  BoxDecoration(
+myBoxDecoration(Color color1, Color color2) {
+  return BoxDecoration(
     gradient: LinearGradient(
       colors: [
         color1,
@@ -122,4 +103,3 @@ myBoxDecoration(Color color1 ,Color color2){
     ),
   );
 }
-

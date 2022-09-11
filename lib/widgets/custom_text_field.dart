@@ -8,7 +8,12 @@ class CustomTextField extends StatelessWidget {
   final bool? enabled;
 
   const CustomTextField(
-      {Key? key, required this.controller, required this.data, required this.hintText,required this.enabled,required this.isObscure})
+      {Key? key,
+      required this.controller,
+      required this.data,
+      required this.hintText,
+      required this.enabled,
+      required this.isObscure})
       : super(key: key);
 
   @override
@@ -21,7 +26,7 @@ class CustomTextField extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(10),
       child: TextFormField(
-        maxLines: 2,
+        maxLines: 1,
         enabled: enabled,
         controller: controller,
         obscureText: isObscure!,

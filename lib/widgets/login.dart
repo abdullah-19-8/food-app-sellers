@@ -103,8 +103,7 @@ class _LoginState extends State<Login> {
             "photoUrl",
             snapshot.data()!["sellerAvatarUrl"],
           );
-        }
-        else{
+        } else {
           firebaseAuth.signOut();
           Navigator.pop(context);
           Navigator.pushReplacement(
