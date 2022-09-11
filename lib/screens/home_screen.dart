@@ -60,31 +60,33 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverPersistentHeader(
               pinned: true, delegate: TextWidgetHeader(title: "My Menus")),
           StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("sellers")
-                  .doc(sharedPreferences!.getString("uid"))
-                  .collection("menus").orderBy("publishedDate",descending: true)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                return !snapshot.hasData
-                    ? SliverToBoxAdapter(
-                        child: Center(
-                          child: circularProgress(),
-                        ),
-                      )
-                    : SliverStaggeredGrid.countBuilder(
-                        crossAxisCount: 1,
-                        staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
-                        itemBuilder: (context, index) {
-                          Menus model = Menus.fromJson(
-                            snapshot.data!.docs[index].data()!
-                                as Map<String, dynamic>,
-                          );
-                          return InfoDesign(model: model, context: context);
-                        },
-                        itemCount: snapshot.data!.docs.length,
-                      );
-              })
+            stream: FirebaseFirestore.instance
+                .collection("sellers")
+                .doc(sharedPreferences!.getString("uid"))
+                .collection("menus")
+                .orderBy("publishedDate", descending: true)
+                .snapshots(),
+            builder: (context, snapshot) {
+              return !snapshot.hasData
+                  ? SliverToBoxAdapter(
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
+                  : SliverStaggeredGrid.countBuilder(
+                      crossAxisCount: 1,
+                      staggeredTileBuilder: (c) => const StaggeredTile.fit(1),
+                      itemBuilder: (context, index) {
+                        Menus model = Menus.fromJson(
+                          snapshot.data!.docs[index].data()!
+                              as Map<String, dynamic>,
+                        );
+                        return InfoDesign(model: model, context: context);
+                      },
+                      itemCount: snapshot.data!.docs.length,
+                    );
+            },
+          ),
         ],
       ),
     );

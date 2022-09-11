@@ -10,7 +10,7 @@ import 'package:sellers_app/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sellers_app/widgets/error_dialog.dart';
 import 'package:sellers_app/widgets/loading_dialog.dart';
-import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:firebase_storage/firebase_storage.dart' as f_storage;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/global.dart';
@@ -95,13 +95,13 @@ class _RegisterState extends State<Register> {
             },
           );
           String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-          fStorage.Reference reference = fStorage.FirebaseStorage.instance
+          f_storage.Reference reference = f_storage.FirebaseStorage.instance
               .ref()
               .child("sellers")
               .child(fileName);
-          fStorage.UploadTask uploadTask =
+          f_storage.UploadTask uploadTask =
               reference.putFile(File(imageXFile!.path));
-          fStorage.TaskSnapshot taskSnapshot =
+          f_storage.TaskSnapshot taskSnapshot =
               await uploadTask.whenComplete(() {});
           await taskSnapshot.ref.getDownloadURL().then((url) {
             sellerImageUrl = url;
@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
       saveDataToFirebase(currentUser!).then((value) {
         Navigator.pop(context);
 
-        Route newRoute = MaterialPageRoute(builder: (c) => HomeScreen());
+        Route newRoute = MaterialPageRoute(builder: (c) => const HomeScreen());
         Navigator.pushReplacement(context, newRoute);
       }).catchError((error) {
         Navigator.pop(context);

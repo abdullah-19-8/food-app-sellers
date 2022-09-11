@@ -112,7 +112,6 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(
               builder: (c) => const AuthScreen(),
             ),
-
           );
           showDialog(
             context: context,
